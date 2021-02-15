@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+require_once 'vendor/autoload.php';
+
+use App\vendor\core\commands\CreateTableComand;
+use App\vendor\core\commands\RollbackComand;
+use Symfony\Component\Console\Application;
+use Core\SRC\MigrationCommand;
+
+$command = new Application();
+$command->add(new MigrationCommand());
+$command->add(new CreateTableComand());
+$command->add(new RollbackComand());
+try {
+    $command->run();
+} catch (Exception $e) {
+}
